@@ -1,3 +1,7 @@
+v1.1.0
+---
+Updated for Babel 7
+
 v1.0.1
 ---
 Install dependencies.
