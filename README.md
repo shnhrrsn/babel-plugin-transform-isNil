@@ -1,19 +1,15 @@
-# babel-plugin-transform-isNil is dead
+# @shnhrrsn/babel-plugin-transform-isNil
 
-Coming new syntax as [proposal-optional-chaining](https://github.com/tc39/proposal-optional-chaining) on [babel7](https://github.com/babel/babel/wiki/Babel-7)
+## Legacy
+This has been updated for Babel 7 for backwards compatibilty of existing code, however new code should migrate to the chaining operator: **[@babel/plugin-proposal-optional-chaining](https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-optional-chaining)**
 
-**Which is only compatible with babel6**
+## Forked from MaxMEllon
+This was forked from [MaxMEllon/babel-plugin-transform-isNil](https://github.com/MaxMEllon/babel-plugin-transform-isNil), which has since been deprecated, and updated to work with Babel 7.
 
-Please use **[@babel/plugin-proposal-optional-chaining](https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-optional-chaining)**
+## @shnhrrsn/babel-plugin-transform-isNil
 
-
-## babel-plugin-transform-isNil
-
-<a href="https://www.npmjs.com/package/babel-plugin-transform-isnil">
-	<img src="https://nodei.co/npm/babel-plugin-transform-isnil.png"/>
-</a>
-<a href="https://travis-ci.org/MaxMEllon/babel-plugin-transform-isNil">
-  <img src="https://travis-ci.org/MaxMEllon/babel-plugin-transform-isNil.svg?branch=master"/>
+<a href="https://www.npmjs.com/package/@shnhrrsn/babel-plugin-transform-isNil">
+	<img src="https://nodei.co/npm/@shnhrrsn/babel-plugin-transform-isNil.png"/>
 </a>
 <a href="https://github.com/sindresorhus/xo">
   <img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"/>
@@ -45,7 +41,7 @@ I want to do the same thing in `JavaScript`.
 ### Installation
 
 ```bash
-$ npm install --save babel-plugin-transform-isnil
+$ npm install --save @shnhrrsn/babel-plugin-transform-isNil
 ```
 
 Example
@@ -121,7 +117,7 @@ if (hoge.poge(hoge) === null || hoge.poge(hoge) === undefined) {
 
 ```json
 {
-  "plugins": ["babel-plugin-transform-isnil"]
+  "plugins": ["@shnhrrsn/plugin-transform-isNil"]
 }
 ```
 
@@ -132,7 +128,7 @@ Requirement global
 * Node v4 or above
 
 ```bash
-$ git clone https://github.com/MaxMEllon/babel-plugin-transform-isNil
+$ git clone https://github.com/shnhrrsn/babel-plugin-transform-isNil
 $ cd babel-plugin-transform-isNil
 $ npm install
 

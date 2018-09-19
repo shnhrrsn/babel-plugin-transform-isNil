@@ -1,5 +1,5 @@
 {
-  "name": "babel-plugin-transform-isnil",
+  "name": "@shnhrrsn/babel-plugin-transform-isnil",
   "version": "1.0.1",
   "description": "replace the comparing of null or undefined with isNil",
   "main": "src",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaxMEllon/babel-plugin-existential-operator.git"
+    "url": "git+https://github.com/shnhrrsn/babel-plugin-transform-isNil.git"
   },
   "keywords": [
     "babel-plugin"
@@ -21,11 +21,14 @@
     "space": 2
   },
   "author": "MaxMEllon",
+  "contributors": [
+    "shnhrrsn"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MaxMEllon/babel-plugin-existential-operator/issues"
+    "url": "https://github.com/shnhrrsn/babel-plugin-transform-isNil/issues"
   },
-  "homepage": "https://github.com/MaxMEllon/babel-plugin-existential-operator#readme",
+  "homepage": "https://github.com/shnhrrsn/babel-plugin-transform-isNil#readme",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "ava": "^0.22.0",
