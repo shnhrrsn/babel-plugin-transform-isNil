@@ -1,6 +1,6 @@
 import vm from 'vm'
 import test from 'ava'
-import {transform} from 'babel-core'
+import {transform} from '@babel/core'
 
 import plugin from '../src/index'
 
@@ -10,18 +10,18 @@ const options = {
   ]
 }
 
-const helper = 'var _isNilWrapper = function (val) { return val === null || typeof val === \'undefined\'; };'
+const helper = 'function _isnil(val) { return val === null || typeof val === \'undefined\'; }'
 
 const transformSpecs = [
   {
     description: 'expect isNil replace to `=== null || === void 0`',
     before: 'hoge.isNil',
-    after: `${helper}\n\n_isNilWrapper(hoge);`
+    after: `${helper}\n\n_isnil(hoge);`
   },
   {
     description: 'expect ! isNil replace to `! (=== null || === void 0)`',
     before: '!hoge.isNil',
-    after: `${helper}\n\n!_isNilWrapper(hoge);`
+    after: `${helper}\n\n!_isnil(hoge);`
   },
   {
     description: 'expect isNil() dont replace',
@@ -31,42 +31,42 @@ const transformSpecs = [
   {
     description: 'function call test 1',
     before: 'foo.bar().isNil',
-    after: `${helper}\n\n_isNilWrapper(foo.bar());`
+    after: `${helper}\n\n_isnil(foo.bar());`
   },
   {
     description: 'function call test 2',
     before: 'foo.bar(hoge).isNil',
-    after: `${helper}\n\n_isNilWrapper(foo.bar(hoge));`
+    after: `${helper}\n\n_isnil(foo.bar(hoge));`
   },
   {
     description: 'Array test 1',
     before: 'foo[0].isNil',
-    after: `${helper}\n\n_isNilWrapper(foo[0]);`
+    after: `${helper}\n\n_isnil(foo[0]);`
   },
   {
     description: 'Array test 2',
     before: 'foo.bar["hoge"].isNil',
-    after: `${helper}\n\n_isNilWrapper(foo.bar["hoge"]);`
+    after: `${helper}\n\n_isnil(foo.bar["hoge"]);`
   },
   {
     description: 'Array test 3',
     before: 'bar[hoge].isNil',
-    after: `${helper}\n\n_isNilWrapper(bar[hoge]);`
+    after: `${helper}\n\n_isnil(bar[hoge]);`
   },
   {
     description: 'Complex test 1',
     before: 'foo.bar.hoge("poge")[1].bar.isNil',
-    after: `${helper}\n\n_isNilWrapper(foo.bar.hoge("poge")[1].bar);`
+    after: `${helper}\n\n_isnil(foo.bar.hoge("poge")[1].bar);`
   },
   {
     description: 'Complex test 2',
     before: 'foo.bar["hoge"]["poge"].foo[bar][2].isNil',
-    after: `${helper}\n\n_isNilWrapper(foo.bar["hoge"]["poge"].foo[bar][2]);`
+    after: `${helper}\n\n_isnil(foo.bar["hoge"]["poge"].foo[bar][2]);`
   },
   {
     description: 'Complex test 3',
     before: '(hoge.poge || {}).foo.bar["hoge"][3].poge.isNil',
-    after: `${helper}\n\n_isNilWrapper((hoge.poge || {}).foo.bar["hoge"][3].poge);`
+    after: `${helper}\n\n_isnil((hoge.poge || {}).foo.bar["hoge"][3].poge);`
   }
 ]
 
