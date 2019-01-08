@@ -34,9 +34,9 @@
     "ava": "^0.22.0",
     "xo": "^0.18.2"
   },
-  "dependencies": {
-    "@babel/helpers": "^7.1.0",
-    "@babel/template": "^7.1.0",
-    "@babel/types": "^7.0.0"
+  "peerDependencies": {
+    "@babel/helpers": ">=7.0.0",
+    "@babel/template": ">=7.0.0",
+    "@babel/types": ">=7.0.0"
   }
 }
