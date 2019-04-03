@@ -24,6 +24,11 @@ const transformSpecs = [
     after: `${helper}\n\n!_isnil(hoge);`
   },
   {
+    description: 'multiple calls should have a single helper`',
+    before: '!hoge.isNil && !poge.isNil',
+    after: `${helper}\n\n!_isnil(hoge) && !_isnil(poge);`
+  },
+  {
     description: 'expect isNil() dont replace',
     before: 'R.isNil()',
     after: 'R.isNil();'

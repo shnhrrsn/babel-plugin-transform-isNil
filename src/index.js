@@ -1,19 +1,13 @@
 'use strict'
 
 const template = require('@babel/template').default
-const helpers = require('@babel/helpers/lib/helpers').default
 const t = require('@babel/types')
 
-helpers.isnil = {
-  minVersion: '7.0.0-beta.0',
-  ast() {
-    return template.program.ast(`
-      export default function _isnil(val) {
-        return val === null || typeof val === 'undefined'
-      }
-    `)
+const helper = name => template.program.ast(`
+  function ${name}(val) {
+    return val === null || typeof val === 'undefined'
   }
-}
+`)
 
 function plugin() {
   return {
@@ -29,9 +23,21 @@ function plugin() {
           return
         }
 
-        const isnil = state.file.addHelper('isnil').name
+        let {isnil} = state.file.declarations
+
+        if (!isnil) {
+          isnil = state.file.scope.generateUidIdentifier('isnil')
+          state.file.declarations.isnil = isnil
+
+          const nodes = helper(isnil.name).body
+          for (const node of nodes) {
+            node._compact = true
+            state.file.path.unshiftContainer('body', nodes)
+          }
+        }
+
         path.replaceWith(
-          t.callExpression(t.identifier(isnil), [node.object])
+          t.callExpression(t.identifier(isnil.name), [node.object])
         )
       }
     }
